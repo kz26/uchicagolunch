@@ -10,6 +10,7 @@ class Restaurant(models.Model):
     name = models.CharField(max_length=100)
 
 class Day(models.Model):
+    num = models.IntegerField() # 0 = Sunday, 6 = Saturday
     name = models.CharField(max_length=100)
 
 class Client(models.Model):
@@ -24,4 +25,3 @@ class Match(models.Model):
     client2 = models.ForeignKey(Client) 
     location = models.ForeignKey(Restaurant)
     date = models.DateTimeField()
-
