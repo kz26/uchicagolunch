@@ -1,5 +1,6 @@
 from django.db import models
 from datehelper import *
+from django.conf import settings
 
 # Create your models here.
 
@@ -32,7 +33,13 @@ class Client(models.Model):
     restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
     day_prefs = models.ManyToManyField(Day, verbose_name='What\'s your availability?')
     created = models.DateTimeField(auto_now_add=True)
+    expires = models.DateTimeField()
     matched = models.BooleanField()
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.expires = datetime.now() + timedelta(days=settings.EXPIRY_DAYS)
+        super(Client, self).save(*args, **kwargs)
 
 class Match(models.Model):
     person1 = models.ForeignKey(Person, related_name='person1')

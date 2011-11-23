@@ -13,7 +13,7 @@ class Matcher:
         days = self.client.day_prefs.values_list('pk', flat=True)
         rests = self.client.restaurant_prefs.values_list('pk', flat=True)
 
-        s = Client.objects.filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests).exclude(person=self.client).distinct().order_by('?')
+        s = Client.objects.exclude(person=self.client).filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests, matched=False).distinct()
         if s.exists():
             self.match = s[0]
 
