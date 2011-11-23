@@ -3,21 +3,18 @@
 {% load url from future %}
 
 {% block content %}
-<div class="container_12">
-    <div id="client-form" class="grid_12">
+<div id="client-form" class="container_12">
+    <div class="grid_12">
+    <h3 id="schedule-week">Now scheduling for the week of<br />
+    {{ weekstr }}</h3>
     <form method="post">
     {% csrf_token %}
     <ul id="client-form-list">
-    <li>{{ form.restaurant_prefs.label }}</li>
-    {% if form.restaurant_prefs.errors %}{% for e in form.restaurant_prefs.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
-    <li>{{ form.restaurant_prefs }}</li>
-    <li>{{ form.day_prefs.label }}</li>
-    {% if form.day_prefs.errors %}{% for e in form.day_prefs.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
-    <li><select id="id_day_prefs" name="day_prefs" multiple="multiple">
-    {% for choice in form.fields.day_prefs.queryset %}
-    <li><option value="{{ choice.num }}">{{ choice.name }}</li>
+    {% for field in form %}
+    <li>{{ field.label }}</li>
+    {% if field.errors %}{% for e in field.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
+    <li>{{ field }}</li>
     {% endfor %}
-    </select>
     </li>
 
     <li><input id="client-form-submit" type="submit" value="Submit" /></li>
@@ -33,17 +30,18 @@
     </div>
     <div class="grid_12">
     <div class="grid_4 alpha">
-        <h2>Provide your contact info</h2>
-        <p>Once we find a match, we'll let you know the details of your lunch date via email.</p>
+        <h2>1. Contact Info</h2>
+        <p>Once we find a match, we'll let you know the details of your lunch date via email.
+        We'll also send you your lunch date's contact info, and vice versa.</p>
     </div>
     <div class="grid_4">
-    <h2>Time and Place</h2>
+    <h2>2. Time and Place</h2>
     <p>We'll find someone who enjoys the same types of food as you do, and schedule
     your lunch date at an appropriate time and place. Our system will suggest a restaurant that
     fits the culinary categories you picked.</p>
     </div>
     <div class="grid_4 omega">
-    <h2>Bon appetit!</h2>
+    <h2>3. Bon appetit!</h2>
     <p>Enjoy your lunch and meet someone new!</p>
     </div>
     </div>

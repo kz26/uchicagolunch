@@ -1,5 +1,5 @@
 header {
-    margin-top: 4em;
+    margin-top: 3em;
     text-align: center;
 }
 
@@ -7,6 +7,15 @@ header h1 {
     font-family: "Adobe Garamond Pro", Times, serif;
     font-size: 2.4em;
     color: #800;
+}
+
+#client-form {
+    margin-top: 1em;
+}
+
+#schedule-week {
+    font-size: 1.2em;
+    text-align: center;
 }
 
 #client-form-list>li {

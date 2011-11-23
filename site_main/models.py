@@ -1,4 +1,5 @@
 from django.db import models
+from datehelper import *
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Day(models.Model):
     num = models.IntegerField(unique=True) # 0 = Sunday, 6 = Saturday
     name = models.CharField(max_length=100, unique=True)
     def __unicode__(self):
-        return self.name
+        return getAbsoluteDate(datetime.now(), self.num).strftime("%A, %b %d")
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
@@ -28,8 +29,9 @@ class Person(models.Model):
 class Client(models.Model):
     person = models.ForeignKey(Person)
     restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
-    day_prefs = models.ManyToManyField(Day, verbose_name='When are you available?')
+    day_prefs = models.ManyToManyField(Day, verbose_name='What\'s your availability?')
     created = models.DateTimeField(auto_now_add=True)
+    matched = models.BooleanField()
 
 class Match(models.Model):
     person1 = models.ForeignKey(Person, related_name='person1')

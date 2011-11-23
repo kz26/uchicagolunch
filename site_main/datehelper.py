@@ -9,7 +9,10 @@ def getNextWeek(d): # returns a datetime 2-tuple of the first and last days of n
     next_end = next_begin + timedelta(days=6)
     return (next_begin, next_end)
 
-def getRelativeDate(d, day): # returns the date next week that corresponds to day
+def getNextWeekNow():
+    return getNextWeek(datetime.now())
+
+def getAbsoluteDate(d, day): # returns the date next week that corresponds to day
 # day: 0 = same day (Sunday), 6 = Saturday
     nw = getNextWeek(d)
-    return (nw + timedelta(days=day))
+    return nw[0] + timedelta(days=day)
