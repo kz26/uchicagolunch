@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load url from future %}
+
+{% block content %}
+<div class="container_12">
+    <div id="client-form" class="grid_12">
+    <form method="post">
+    {% csrf_token %}
+    <ul id="client-form-list">
+    <li>{{ form.restaurant_prefs.label }}</li>
+    {% if form.restaurant_prefs.errors %}{% for e in form.restaurant_prefs.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
+    <li>{{ form.restaurant_prefs }}</li>
+    <li>{{ form.day_prefs.label }}</li>
+    {% if form.day_prefs.errors %}{% for e in form.day_prefs.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
+    <li><select id="id_day_prefs" name="day_prefs" multiple="multiple">
+    {% for choice in form.fields.day_prefs.queryset %}
+    <li><option value="{{ choice.num }}">{{ choice.name }}</li>
+    {% endfor %}
+    </select>
+    </li>
+
+    <li><input id="client-form-submit" type="submit" value="Submit" /></li>
+    </ul>
+    </form>
+    </div>
+</div>
+<div id="spread3" class="container_12">
+    <div class="fancy_br">
+    </div>
+    <div class="grid_12">
+        <h1>It's as easy as 1, 2, 3</h1>
+    </div>
+    <div class="grid_12">
+    <div class="grid_4 alpha">
+        <h2>Provide your contact info</h2>
+        <p>Once we find a match, we'll let you know the details of your lunch date via email.</p>
+    </div>
+    <div class="grid_4">
+    <h2>Time and Place</h2>
+    <p>We'll find someone who enjoys the same types of food as you do, and schedule
+    your lunch date at an appropriate time and place. Our system will suggest a restaurant that
+    fits the culinary categories you picked.</p>
+    </div>
+    <div class="grid_4 omega">
+    <h2>Bon appetit!</h2>
+    <p>Enjoy your lunch and meet someone new!</p>
+    </div>
+    </div>
+</div>
+{% endblock %}
+{% block script %}
+{{ block.super }}
+<script>
+$(document).ready(function() {
+    $('select').multiselect();
+    $('#client-form-submit').button();
+});
+</script>
+{% endblock %}

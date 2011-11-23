@@ -1,0 +1,45 @@
+header {
+    margin-top: 4em;
+    text-align: center;
+}
+
+header h1 {
+    font-family: "Adobe Garamond Pro", Times, serif;
+    font-size: 2.4em;
+    color: #800;
+}
+
+#client-form-list>li {
+    text-align: center;
+    margin: 1em;
+}
+
+li.formerror {
+    font-weight: bold;
+    color: red;
+    margin-left: 2em;
+}
+
+.fancy_br { 
+    margin: 25px 0;
+    height: 1px;
+    background: black;
+    background: -webkit-gradient(linear, 0 0, 100% 0, from(white), to(white), color-stop(50%, black));
+    background: -moz-linear-gradient(left, white, black 50%, white);
+}
+
+#spread3 {
+    margin-top: 2em;
+text-align: center;
+}
+
+#spread3 h1 {
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#spread3 h2 {
+    text-align: center;
+    font-size: 1.5em;
+}
