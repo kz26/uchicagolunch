@@ -11,14 +11,15 @@ class RestaurantCategory(models.Model):
 class Restaurant(models.Model):
     category = models.ForeignKey(RestaurantCategory)
     name = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
     def __unicode__(self):
         return self.name
 
 class Day(models.Model):
-    num = models.IntegerField(unique=True) # 0 = Sunday, 6 = Saturday
-    name = models.CharField(max_length=100, unique=True)
+    num = models.IntegerField(primary_key=True) # 0 = Sunday, 6 = Saturday
+    #name = models.CharField(max_length=100, unique=True)
     def __unicode__(self):
-        return getAbsoluteDate(datetime.now(), self.num).strftime("%A, %b %d")
+        return getDateOffset(getNextWeekNow()[0], self.num).strftime("%A, %b %d")
 
 class Person(models.Model):
     name = models.CharField(max_length=100)

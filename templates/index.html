@@ -7,6 +7,9 @@
     <div class="grid_12">
     <h3 id="schedule-week">Now scheduling for the week of<br />
     {{ weekstr }}</h3>
+    {% if valid_submit %}
+    <p id="submit-success">Your information has been added to the queue. We'll let you know when we find a match!</p>
+    {% else %}
     <form method="post">
     {% csrf_token %}
     <ul id="client-form-list">
@@ -15,11 +18,10 @@
     {% if field.errors %}{% for e in field.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
     <li>{{ field }}</li>
     {% endfor %}
-    </li>
-
     <li><input id="client-form-submit" type="submit" value="Submit" /></li>
     </ul>
     </form>
+    {% endif %}
     </div>
 </div>
 <div id="spread3" class="container_12">

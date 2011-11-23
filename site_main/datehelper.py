@@ -1,8 +1,8 @@
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, time, timedelta
 
 def next_sunday(d): # gets the date of the next Sunday
     newday = 7 - d.isoweekday() if d.isoweekday() != 7 else 7
-    return date(d.year, d.month, d.day + newday)
+    return d + timedelta(days=newday)
 
 def getNextWeek(d): # returns a datetime 2-tuple of the first and last days of next week, relative to the input date
     next_begin = next_sunday(d)
@@ -10,9 +10,8 @@ def getNextWeek(d): # returns a datetime 2-tuple of the first and last days of n
     return (next_begin, next_end)
 
 def getNextWeekNow():
-    return getNextWeek(datetime.now())
+    return getNextWeek(date.today())
 
-def getAbsoluteDate(d, day): # returns the date next week that corresponds to day
+def getDateOffset(d, day): # returns the date next week that corresponds to day
 # day: 0 = same day (Sunday), 6 = Saturday
-    nw = getNextWeek(d)
-    return nw[0] + timedelta(days=day)
+    return d + timedelta(days=day)

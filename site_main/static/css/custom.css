@@ -9,6 +9,11 @@ header h1 {
     color: #800;
 }
 
+#submit-success {
+    text-align: center;
+    color: green;
+}
+
 #client-form {
     margin-top: 1em;
 }
