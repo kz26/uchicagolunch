@@ -20,7 +20,7 @@
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/text.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/reset.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/custom.css">
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/ui-lightness/jquery-ui.css">
+	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/blitzer/jquery-ui.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/jquery.multiselect.css">
 
 	<script src="{{ STATIC_URL }}js/libs/modernizr-2.0.min.js"></script>
@@ -29,10 +29,12 @@
 
 {% block header %}
 <header>
-<div class="container_12">
+<div id="header" class="container_12">
     <div class="grid_12">
         <h1>UChicago.Lunch</h1>
         <h2>Meet someone new over a great meal.</h2>
+        <div class="fb-like" data-send="true" data-width="0" data-show-faces="true"></div>
+        <div class="fancy_br"></div>
     </div>
 </div>
 </header>
@@ -40,6 +42,12 @@
 {% block content %}{% endblock %}
 {% block footer %}
 <footer>
+<div id="footer" class="container_12">
+    <div class="grid_12">
+    <p>UChicago.Lunch &copy; 2011</p>
+    <p>Terms of Use | Contact Us</p>
+    </div>
+</div>
 </footer>
 {% endblock %}
 {% block script %}

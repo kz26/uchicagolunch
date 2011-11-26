@@ -19,6 +19,7 @@
     <li>{{ field }}</li>
     {% endfor %}
     <li><input id="client-form-submit" type="submit" value="Submit" /></li>
+    <li><i>Your lunch date will be scheduled somewhere between 12-2 pm on one of the days you choose.</i>
     </ul>
     </form>
     {% endif %}
@@ -53,7 +54,7 @@
 {{ block.super }}
 <script>
 $(document).ready(function() {
-    $('select').multiselect();
+    $('select').multiselect({header: 'Choose at least one'});
     $('#client-form-submit').button();
 });
 </script>

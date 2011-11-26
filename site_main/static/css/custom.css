@@ -1,5 +1,4 @@
 header {
-    margin-top: 3em;
     text-align: center;
 }
 
@@ -14,10 +13,6 @@ header h1 {
     color: green;
 }
 
-#client-form {
-    margin-top: 1em;
-}
-
 #schedule-week {
     font-size: 1.2em;
     text-align: center;
@@ -25,7 +20,7 @@ header h1 {
 
 #client-form-list>li {
     text-align: center;
-    margin: 1em;
+    margin: 0.5em;
 }
 
 li.formerror {
@@ -43,8 +38,7 @@ li.formerror {
 }
 
 #spread3 {
-    margin-top: 2em;
-text-align: center;
+    text-align: center;
 }
 
 #spread3 h1 {
@@ -57,3 +51,9 @@ text-align: center;
     text-align: center;
     font-size: 1.5em;
 }
+
+#footer {
+    margin-top: 10px;
+    border-top: 1px solid black;
+}
+

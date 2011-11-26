@@ -31,7 +31,7 @@ class Person(models.Model):
 class Client(models.Model):
     person = models.ForeignKey(Person)
     restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
-    day_prefs = models.ManyToManyField(Day, verbose_name='What\'s your availability?')
+    day_prefs = models.ManyToManyField(Day, verbose_name='When are you available for lunch?')
     created = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField()
     matched = models.BooleanField()
