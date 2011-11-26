@@ -1,6 +1,7 @@
 from models import *
 from random import choice
 from datehelper import *
+import sys
 
 class Matcher:
     def __init__(self, myclient):
@@ -13,9 +14,11 @@ class Matcher:
         days = self.client.day_prefs.values_list('pk', flat=True)
         rests = self.client.restaurant_prefs.values_list('pk', flat=True)
 
-        s = Client.objects.exclude(person=self.client).filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests, matched=False).distinct()
+        s = Client.objects.filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests, matched=False).exclude(person=self.client.person).distinct()
         if s.exists():
-            self.match = s[0]
+            #s = [client for client in s if client.matched == False]
+            self.match = choice(s)
+            #sys.stdout.write("Matched %s with %s\n" % (self.client.person.name, self.match.person.name))
 
     def __suggest_day(self): # randomly suggest a day that works for both the client and the match
         if self.match:
@@ -39,17 +42,23 @@ class Matcher:
         return None
 
     def get_match(self): # sets matched to True in both self and match, and creates a match object
-        if self.__matchobj:
+        if self.__matchobj is not None:
             return self.__matchobj
         elif self.match:
             self.client.matched = True
             self.match.matched = True
             self.client.save()
             self.match.save()
-            m = Match.objects.create(person1=self.client.person, person2=self.match.person, location=self.suggest_restaurant(), date=self.suggest_datetime()) 
+            #sys.stdout.write("%s: matched = %s\n" % (self.client.person.name, self.client.matched))
+            #sys.stdout.write("%s: matched = %s\n" % (self.match.person.name, self.client.matched))
+            m = Match(person1=self.client.person, person2=self.match.person, location=self.suggest_restaurant(), date=self.suggest_datetime()) 
+            m.save()
+            #sys.stdout.write("Created match object with %s and %s\n" % (self.client.person.name, self.match.person.name))
             self.__matchobj = m
             return m
         return None
 
     def __nonzero__(self):
+        #if self.match:
+            #sys.stdout.write("%s has a match\n" % (self.client.person.name))
         return self.match != None
