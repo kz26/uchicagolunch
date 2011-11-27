@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
 from site_main.matcher import *
 from random import shuffle
+from site_main.emailhelper import *
 
 class Command(BaseCommand):
     help = "Find matches and notify users via email"
@@ -16,8 +17,9 @@ class Command(BaseCommand):
                 m = Matcher(c)
                 if m:
                     mo = m.get_match()
+                    notify_match(mo)
                     #self.stdout.write("Got match object with %s and %s\n" % (mo.person1.name, mo.person2.name))
-            else:
+            #else:
                 #self.stdout.write("%s is already matched, skipping\n" % (c.person.name))
 
 
