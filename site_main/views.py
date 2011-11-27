@@ -2,7 +2,7 @@
 from models import *
 from django.shortcuts import *
 from forms import *
-from datehelper import *
+from datetime import date, timedelta, time
 
 WEEK_FORMAT_STR = "%B %d"
 
@@ -14,10 +14,13 @@ def home(request):
         if form.is_valid():
             person = Person.objects.get_or_create(name=form.cleaned_data['name'], email=form.cleaned_data['email'])[0]
             client.person = person
+            dates = [d.date for d in form.cleaned_data['day_prefs']]
+            client.expires = datetime.combine(max(dates), time(0))
             form.save()
             valid_submit = True
     else:
         form = ClientForm()
-    week = getNextWeekNow()
-    weekstr = "%s - %s, %s" % (week[0].strftime(WEEK_FORMAT_STR), week[1].strftime(WEEK_FORMAT_STR), datetime.now().year)
+    tomorrow = date.today() + timedelta(days=1)
+    endday = date.today() + timedelta(days=7)
+    weekstr = "%s - %s, %s" % (tomorrow.strftime(WEEK_FORMAT_STR), endday.strftime(WEEK_FORMAT_STR), date.today().year)
     return render(request, 'index.html', dictionary={'weekstr': weekstr, 'form': form, 'valid_submit': valid_submit})

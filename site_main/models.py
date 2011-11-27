@@ -1,6 +1,6 @@
 from django.db import models
-from datehelper import *
 from django.conf import settings
+from datetime import date, timedelta, datetime
 
 # Create your models here.
 
@@ -17,10 +17,12 @@ class Restaurant(models.Model):
         return self.name
 
 class Day(models.Model):
-    num = models.IntegerField(primary_key=True) # 0 = Sunday, 6 = Saturday
+    date = models.DateField()
+    #num = models.IntegerField(primary_key=True) # 0 = Sunday, 6 = Saturday
     #name = models.CharField(max_length=100, unique=True)
     def __unicode__(self):
-        return getDateOffset(getNextWeekNow()[0], self.num).strftime("%A, %b %d")
+        return self.date.strftime("%A, %b. %d, %Y")
+        #return getDateOffset(getNextWeekNow()[0], self.num).strftime("%A, %b %d")
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
@@ -36,10 +38,11 @@ class Client(models.Model):
     expires = models.DateTimeField()
     matched = models.BooleanField()
 
-    def save(self, *args, **kwargs):
-        if self.pk is None:
-            self.expires = datetime.now() + timedelta(days=settings.EXPIRY_DAYS)
-        super(Client, self).save(*args, **kwargs)
+    #def save(self, *args, **kwargs):
+    #    if self.pk is None:
+    #        dates = tuple(self.day_prefs.values_list('date', flat=True))
+    #        self.expires = datetime.combine(max(dates), time(0))
+    #        super(Client, self).save(*args, **kwargs)
 
 class Match(models.Model):
     person1 = models.ForeignKey(Person, related_name='person1')

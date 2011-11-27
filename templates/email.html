@@ -14,9 +14,12 @@ You've got a lunch date, courtesy of UChicago.Lunch!
 <br />
 <b>
 {{ match.location.name }}<br />
-{{ match.location.date }}<br />
+{{ match.date|date:"l, F j, Y g:i A" }}<br />
 </b>
 </p>
+
+<p>Please note that the venue, date, and time are only suggestions. We highly recommend that you contact your date
+to confirm, or arrange to meet at another location or time.</p>
 
 <p>Have fun and enjoy your meal!</p>
 <p>

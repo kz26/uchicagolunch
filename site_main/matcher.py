@@ -23,7 +23,7 @@ class Matcher:
     def __suggest_day(self): # randomly suggest a day that works for both the client and the match
         if self.match:
             days = set(self.client.day_prefs.all()) & set(self.match.day_prefs.all())
-            return choice(tuple(days)).num # returns the number, not the actual Day object
+            return choice(tuple(days)) # returns the number, not the actual Day object
         return None
 
     def suggest_restaurant(self): # randomly suggest a restaurant that works for both the client and the match
@@ -35,7 +35,7 @@ class Matcher:
 
     def suggest_datetime(self): # returns a datetime object representing the match date/time
         if self.match:
-            d = getDateOffset(getNextWeekNow()[0], self.__suggest_day())
+            d = self.__suggest_day().date
             t = time(12)
             offset = timedelta(minutes=choice(range(0, 135, 15))) # and increase in random 15-min intervals until 2pm
             return datetime.combine(d, t) + offset
