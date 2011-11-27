@@ -5,11 +5,15 @@ from datetime import date, timedelta, datetime
 # Create your models here.
 
 class RestaurantCategory(models.Model):
-    value = models.CharField(max_length=100)
+    class Meta:
+        ordering = ['name']
+    name = models.CharField(max_length=100)
     def __unicode__(self):
-        return self.value
+        return self.name
 
 class Restaurant(models.Model):
+    class Meta:
+        ordering = ['name']
     category = models.ForeignKey(RestaurantCategory)
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
@@ -17,6 +21,8 @@ class Restaurant(models.Model):
         return self.name
 
 class Day(models.Model):
+    class Meta:
+        ordering = ['date']
     date = models.DateField()
     #num = models.IntegerField(primary_key=True) # 0 = Sunday, 6 = Saturday
     #name = models.CharField(max_length=100, unique=True)
@@ -49,3 +55,6 @@ class Match(models.Model):
     person2 = models.ForeignKey(Person, related_name='person2')
     location = models.ForeignKey(Restaurant)
     date = models.DateTimeField()
+
+class Ban(models.Model):
+    email = models.EmailField()

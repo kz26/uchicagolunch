@@ -9,7 +9,7 @@ class ClientForm(forms.ModelForm):
         model = Client
         fields = ('name', 'email', 'restaurant_prefs', 'day_prefs')
     name = forms.CharField(max_length=100)
-    email = forms.EmailField(validators=[uchicago_validate]) 
+    email = forms.EmailField(validators=[uchicago_validate, banned_check]) 
     def __init__(self, *args, **kwargs):
         super(ClientForm, self).__init__(*args, **kwargs)
         tomorrow = date.today() + timedelta(days=1)

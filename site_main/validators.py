@@ -7,3 +7,7 @@ def uchicago_validate(value):
        raise ValidationError("Only @uchicago.edu email addresses are supported at this time.")
    if Client.objects.filter(person__email=value, matched=True).exists():
        raise ValidationError("This email address has already been registered for the current cycle.")
+
+def banned_check(value):
+    if Ban.objects.filter(email=value).exists():
+        raise ValidationError("This email address has been blacklisted.")

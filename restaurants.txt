@@ -1,0 +1,52 @@
+﻿Boston Market	1424 East 53rd St.	Fast food
+Five Guys	1456 E 53rd St.	Fast food
+Harold's Chicken	1208 East 53rd Street	Fast food
+Hyde Park Gyros	1368 East 53rd Street	Fast food
+Jimmy John's	1519 East 55th Street	Fast food
+McDonald's	5220 South Lake Park Avenue	Fast food
+Morry's Deli	5500 South Cornell Avenue	Fast food
+Nathan's	1372 East 53rd Street	Fast food
+Pepe's Express	1310 East 53rd Street	Fast food
+Pockets	1309 East 53rd Street	Fast food
+Potbelly	5428 South Lake Park Avenue	Fast food
+Ribs 'n' Bibs	5428 South Lake Park Avenue	Fast food
+Sammy's Touch	5659 South Cottage Grove Avenue	Fast food
+Subway	1449 E 57th St	Fast food
+Domino's Pizza	1453 East Hyde Park Boulevard	Fast food
+Windy's Deli	1013 East 53rd Street	Fast food
+Cholie's	1601 East 53rd Street	Pizza and European
+Edwardo's	1321 East 57th Street	Pizza and European
+Giordano's	5309 South Blackstone Avenue	Pizza and European
+La Petite Folie	1504 East 55th Street	Pizza and European
+Leona's	1236 East 53rd Street	Pizza and European
+Medici	1327 East 57th Street	Pizza and European
+Piccolo Mondo	1642 East 56th Street	Pizza and European
+Pizza Capri	1501 East 53rd Street	Pizza and European
+Café Corea	1603 East 55th Street	Asian
+Chant	1509 E 53rd St	Asian
+Kikuya Japanese Restaurant	1601 East 55th Street	Asian
+Nicky's Chinese Food	5231 South Woodlawn Avenue	Asian
+Noodles Etc.	1333 East 57th Street	Asian
+Rajun Cajun	1459 East 53rd Street	Asian
+Shinju Sushi	1375 East 53rd Street	Asian
+Sit Down Café and Sushi Bar	1312 East 53rd Street	Asian
+Wok N Roll	1410 East 53rd Street	Asian
+Thai 55	1607 East 55th Street	Asian
+Siam	1641 East 55th Street	Asian
+The Snail	1649 East 55th Street	Asian
+Cedars	1206 East 53rd Street	Mediterranean and Middle Eastern
+Nile Restaurant	1611 East 55th Street	Mediterranean and Middle Eastern
+Valois	1518 East 53rd Street	Cafés and Diners
+Zaleski & Horvath	1323 East 57th Street	Cafés and Diners
+Salonica	1440 East 57th Street	Cafés and Diners
+Park 52	5201 S Harper Ave	American
+Bar Louie	5500 S. Shore Dr.	American
+Mellow Yellow	1508 East 53rd Street	American
+The Big Easy	1660 East 55th St.	American
+Seven Ten Lanes	1055 East 55th Street	American
+Maravillas	5211 S Harper Ave	Mexican
+Uncle Joe's	1461 E Hyde Park Blvd	Caribbean
+Bartlett Dining Commons	5640 South University Avenue	On-campus / Dining halls
+Pierce Dining Commons	5514 South University Avenue	On-campus / Dining halls
+South Campus Dining Commons	6031 South Ellis Avenue	On-campus / Dining halls
+Hutchinson Commons	5706 South University (Reynolds Club)	On-campus / Dining halls
