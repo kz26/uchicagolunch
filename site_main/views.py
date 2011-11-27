@@ -3,6 +3,7 @@ from models import *
 from django.shortcuts import *
 from forms import *
 from datetime import date, timedelta, time
+from django.conf import settings
 
 WEEK_FORMAT_STR = "%B %d"
 
@@ -21,6 +22,6 @@ def home(request):
     else:
         form = ClientForm()
     tomorrow = date.today() + timedelta(days=1)
-    endday = date.today() + timedelta(days=7)
+    endday = date.today() + timedelta(days=settings.DAYS_IN_FUTURE)
     weekstr = "%s - %s, %s" % (tomorrow.strftime(WEEK_FORMAT_STR), endday.strftime(WEEK_FORMAT_STR), date.today().year)
     return render(request, 'index.html', dictionary={'weekstr': weekstr, 'form': form, 'valid_submit': valid_submit})

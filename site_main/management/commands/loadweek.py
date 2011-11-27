@@ -8,7 +8,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         today = date.today()
-        for i in range(settings.DAYS_IN_FUTURE + 7):
+        for i in range(settings.DAYS_IN_FUTURE + 8):
             d = today + timedelta(days=i) 
             dobj = Day.objects.get_or_create(date=d)
             if dobj[1]:

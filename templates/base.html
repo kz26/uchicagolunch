@@ -32,7 +32,7 @@
 <div id="header" class="container_12">
     <div class="grid_12">
         <h1>UChicago.Lunch</h1>
-        <h2>Meet someone new over a great meal.</h2>
+        <h2>Meet someone new over the midday meal.</h2>
         <div class="fb-like" data-send="true" data-width="0" data-show-faces="true"></div>
         <div class="fancy_br"></div>
     </div>
@@ -45,7 +45,7 @@
 <div id="footer" class="container_12">
     <div class="grid_12">
     <p>UChicago.Lunch &copy; 2011</p>
-    <p>Terms of Use | Contact Us</p>
+    <p><a href="{% url 'terms' %}">Terms of Use</a> | <a href="{% url 'faq' %}">FAQ</a> | <a href="mailto:admin@uchicagolunch.com">Contact Us</a></p>
     </div>
 </div>
 </footer>
@@ -55,7 +55,7 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : 'YOUR_APP_ID', // App ID
+      appId      : '{{ fb_app_id }}', // App ID
       channelURL : '{{ STATIC_URL }}channel.html', // Channel File
       status     : true, // check login status
       cookie     : true, // enable cookies to allow the server to access the session
@@ -81,7 +81,7 @@
 <script src="{{ STATIC_URL }}js/libs/jquery.multiselect.min.js"></script>
 
 <script>
-	var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
+	var _gaq=[['_setAccount','UA-10371252-5'],['_trackPageview']]; // Change UA-XXXXX-X to be your site's ID
 	(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
 	g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
 	s.parentNode.insertBefore(g,s)}(document,'script'));

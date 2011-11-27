@@ -1,6 +1,6 @@
 from models import *
 from random import choice
-from datehelper import *
+from datetime import datetime, date, timedelta
 import sys
 
 class Matcher:
@@ -14,7 +14,7 @@ class Matcher:
         days = self.client.day_prefs.values_list('pk', flat=True)
         rests = self.client.restaurant_prefs.values_list('pk', flat=True)
 
-        s = Client.objects.filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests, matched=False).exclude(person=self.client.person).distinct()
+        s = Client.objects.filter(day_prefs__pk__in=days, restaurant_prefs__pk__in=rests, matched=False, expires__gt=datetime.now()).exclude(person=self.client.person).distinct()
         if s.exists():
             #s = [client for client in s if client.matched == False]
             self.match = choice(s)

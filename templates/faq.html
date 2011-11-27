@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load url from future %}
+{% block content %}
+<div class="container_12">
+    <div class="grid_12">
+        <h1 id="content-header">Frequently asked questions</h1>
+        <ul>
+            <li><p class="bold">What restaurants have you included?</p>
+                <p>Our restaurant list was compiled using a combination of the Chicago Life dining guide, Yelp, and personal knowledge.</p>
+            </li>
+            <li><p class="bold">Is the restaurant and meeting time that I was given set in stone?</p>
+                <p>Not at all! We encourage people to contact their lunch dates if another time or place would be preferable.</p>
+            </li>
+            <li><p class="bold">I don't like my restaurant or meeting time. What should I do?</p>
+                <p>Please contact your lunch date and inform them. UChicago.Lunch is a matching service only and is not able to resolve
+                   individual conflicts.</p>
+            </li>
+            <li><p class="bold">When do I know if I get matched / How much advance notice do I get?</p>
+                <p>Due to the randomized nature of our matching algorithm, we are not able to provide specific timeframes. However,
+                   you will usually be notified via email several hours before the time of your lunch date.</p>
+            </li>
+            <li><p class="bold">How long does my request stay in the system?</p>
+                <p>If we are not able to match you, your request expires on the latest day you selected for your availability.</p>
+            </li>
+
+        </ul>
+    </div>
+</div>
+{% endblock %}

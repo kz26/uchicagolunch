@@ -3,12 +3,13 @@ from django.conf import settings
 from site_main.matcher import *
 from random import shuffle
 from site_main.emailhelper import *
+from datetime import datetime
 
 class Command(BaseCommand):
     help = "Find matches and notify users via email"
 
     def handle(self, *args, **options):
-        clients = Client.objects.filter(matched=False).values_list('id', flat=True)
+        clients = Client.objects.filter(matched=False, expires__gt=datetime.now()).values_list('id', flat=True)
         shuffle(list(clients))
         for clid in clients:
             c = Client.objects.get(pk=clid) # force a refresh of the client object, otherwise caching does funny things
