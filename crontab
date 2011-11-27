@@ -1,3 +1,3 @@
 12 0 * * * python2.7 ~/webapps/ucl/uchicagolunch/manage.py prunequeue
+0 0 * * sun python2.7 ~/webapps/ucl/uchicagolunch/manage.py loadweek
 @daily python2.7 ~/webapps/ucl/uchicagolunch/manage.py match
-@daily python2.7 ~/webapps/ucl/uchicagolunch/manage.py loadweek
