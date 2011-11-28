@@ -44,6 +44,9 @@ class Client(models.Model):
     expires = models.DateTimeField()
     matched = models.BooleanField()
 
+    def __unicode__(self):
+        return "%s <%s>" % (self.person.name, self.person.email)
+
     #def save(self, *args, **kwargs):
     #    if self.pk is None:
     #        dates = tuple(self.day_prefs.values_list('date', flat=True))
