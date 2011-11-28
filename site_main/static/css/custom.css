@@ -8,6 +8,11 @@ header h1 {
     color: #800;
 }
 
+header #inspired {
+    font-family: "Times New Roman", Times, sans-serif;
+    font-style: italic;
+}
+
 #content-header {
     font-size: 1.5em;
 }
