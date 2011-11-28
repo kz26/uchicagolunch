@@ -14,7 +14,10 @@ def home(request):
         client = Client()
         form = ClientForm(request.POST, instance=client)
         if form.is_valid():
-            person = Person.objects.get_or_create(name=form.cleaned_data['name'], email=form.cleaned_data['email'])[0]
+            person = Person.objects.get_or_create(email=form.cleaned_data['email'])[0]
+            if person.name != form.cleaned_data['name']:
+                person.name = form.cleaned_data['name']
+                person.save()
             client.person = person
             dates = [d.date for d in form.cleaned_data['day_prefs']]
             client.expires = datetime.combine(max(dates), time(23, 59, 59))
