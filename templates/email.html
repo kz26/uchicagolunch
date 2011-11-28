@@ -7,9 +7,9 @@ You've got a lunch date, courtesy of UChicago.Lunch!
 <p>
 <b>
 {% if switch %}
-{{ match.person1.name }}</b> (<a href="mailto:{{ match.person1.email }}">match.person1.email</a>)
+{{ match.person1.name }}</b> (<a href="mailto:{{ match.person1.email }}">{{ match.person1.email }}</a>)
 {% else %}
-{{ match.person2.name }}</b> (<a href="mailto:{{ match.person2.email }}">match.person2.email</a>)
+{{ match.person2.name }}</b> (<a href="mailto:{{ match.person2.email }}">{{ match.person2.email }}</a>)
 {% endif %}
 <br />
 <b>
