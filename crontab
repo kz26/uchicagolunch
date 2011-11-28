@@ -7,4 +7,4 @@ DJANGO_SETTINGS_MODULE=uchicagolunch.settings
 
 @daily /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py prunequeue
 0 0 * * sun /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py loadweek
-15 * * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py match
+15 */4 * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py match
