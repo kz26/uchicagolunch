@@ -61,3 +61,6 @@ class Match(models.Model):
 
 class Ban(models.Model):
     email = models.EmailField()
+
+class IPBan(models.Model):
+    ip = models.IPAddressField()
