@@ -64,3 +64,5 @@ class Ban(models.Model):
 
 class IPBan(models.Model):
     ip = models.IPAddressField()
+    def __unicode__(self):
+        return str(self.ip)
