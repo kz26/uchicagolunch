@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     url(r'^$', 'site_main.views.home'),
     url(r'^faq/$', direct_to_template, {'template': 'faq.html'}, name="faq"),
     url(r'^tos/$', direct_to_template, {'template': 'terms.html'}, name="terms"),
-    url(r'^favicon.ico/$', redirect_to, {'url': 'http://static.uchicagolunch.com/favicon.ico'}),
+    url(r'^favicon.ico$', redirect_to, {'url': 'http://static.uchicagolunch.com/favicon.ico'}),
     url(r'^activate/(\w+)/$', 'site_main.views.activate'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
