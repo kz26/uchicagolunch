@@ -28,10 +28,10 @@ class Matcher:
 
     def suggest_restaurant(self): # randomly suggest a restaurant that works for both the client and the match
         if self.match:
-            cats = set(self.client.restaurant_prefs.all()) & set(self.match.restaurant_prefs.all())
-            catlist = [c.pk for c in tuple(cats)]
-            rlist = Restaurant.objects.filter(category__pk__in=catlist)
-            return choice(tuple(rlist))
+            cats = set(self.client.restaurant_prefs.all()) & set(self.match.restaurant_prefs.all()) # get the valid categories
+            rcat = choice(tuple(cats)) # pick a category
+            rests = Restaurant.objects.filter(category=rcat) # pick a restaurant
+            return choice(tuple(rests)) 
         return None
 
     def suggest_datetime(self): # returns a datetime object representing the match date/time
