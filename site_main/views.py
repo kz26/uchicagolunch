@@ -4,6 +4,7 @@ from django.shortcuts import *
 from forms import *
 from datetime import date, timedelta, time
 from django.conf import settings
+from emailhelper import *
 
 WEEK_FORMAT_STR = "%B %d"
 
@@ -18,6 +19,7 @@ def home(request):
             dates = [d.date for d in form.cleaned_data['day_prefs']]
             client.expires = datetime.combine(max(dates), time(23, 59, 59))
             form.save()
+            send_activation_email(client) 
             valid_submit = True
     else:
         form = ClientForm()
@@ -25,3 +27,12 @@ def home(request):
     endday = date.today() + timedelta(days=settings.DAYS_IN_FUTURE)
     weekstr = "%s - %s, %s" % (tomorrow.strftime(WEEK_FORMAT_STR), endday.strftime(WEEK_FORMAT_STR), date.today().year)
     return render(request, 'index.html', dictionary={'weekstr': weekstr, 'form': form, 'valid_submit': valid_submit})
+
+def activate(request, code):
+    try:
+        c = Client.objects.get(act_code=code)
+        c.active = True
+        c.save()
+        return render(request, 'activated.html')
+    except:
+        return HttpResponse("Invalid activation key", status=400)

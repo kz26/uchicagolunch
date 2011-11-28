@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from datetime import date, timedelta, datetime
+from acgen import *
 
 # Create your models here.
 
@@ -43,15 +44,16 @@ class Client(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField()
     matched = models.BooleanField()
+    active = models.BooleanField()
+    act_code = models.CharField(max_length=128)
 
     def __unicode__(self):
         return "%s <%s>" % (self.person.name, self.person.email)
 
-    #def save(self, *args, **kwargs):
-    #    if self.pk is None:
-    #        dates = tuple(self.day_prefs.values_list('date', flat=True))
-    #        self.expires = datetime.combine(max(dates), time(0))
-    #        super(Client, self).save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.act_code = GenRandomKey(64)
+        super(Client, self).save(*args, **kwargs)
 
 class Match(models.Model):
     person1 = models.ForeignKey(Person, related_name='person1')

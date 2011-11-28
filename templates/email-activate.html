@@ -1,0 +1,17 @@
+{% load url from future %}
+<html>
+<p>
+This email address was recently entered on <a href="http://uchicagolunch.com">UChicago.Lunch</a> to request a lunch date.
+</p>
+
+<p>To confirm this request and add yourself to the queue, please click the following link: <br />
+<a href="http://uchicagolunch.com{% url 'site_main.views.activate' client.act_code %}">Activate my request</a>
+</p>
+
+<p>If you did not sign up, please disregard this message.</p>
+
+<p>
+Thanks, <br />
+the UChicago.Lunch crew
+</p>
+</html>

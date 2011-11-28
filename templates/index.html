@@ -8,7 +8,7 @@
     <h3 id="schedule-week">Now scheduling for<br />
     {{ weekstr }}</h3>
     {% if valid_submit %}
-    <p id="submit-success">Your information has been added to the queue. We'll let you know when we find a match!</p>
+    <p id="submit-success">An email has been dispatched to the address you provided. Please follow the directions in the email to activate your request.</p>
     {% else %}
     <form method="post">
     {% csrf_token %}

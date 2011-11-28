@@ -9,7 +9,7 @@ class Command(BaseCommand):
     help = "Find matches and notify users via email"
 
     def handle(self, *args, **options):
-        clients = Client.objects.filter(matched=False, expires__gt=datetime.now()).values_list('id', flat=True)
+        clients = Client.objects.filter(active=True, matched=False, expires__gt=datetime.now()).values_list('id', flat=True)
         shuffle(list(clients))
         for clid in clients:
             c = Client.objects.get(pk=clid) # force a refresh of the client object, otherwise caching does funny things
