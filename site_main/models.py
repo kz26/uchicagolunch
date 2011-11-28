@@ -60,6 +60,8 @@ class Match(models.Model):
     person2 = models.ForeignKey(Person, related_name='person2')
     location = models.ForeignKey(Restaurant)
     date = models.DateTimeField()
+    def __unicode__(self):
+        return "(%s, %s)" % (self.person1.name, self.person2.name)
 
 class Ban(models.Model):
     email = models.EmailField()
