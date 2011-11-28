@@ -20,7 +20,7 @@ def home(request):
                 person.save()
             client.person = person
             dates = [d.date for d in form.cleaned_data['day_prefs']]
-            client.expires = datetime.combine(max(dates), time(23, 59, 59))
+            client.expires = datetime.combine(max(dates), time(11))
             form.save()
             send_activation_email(client) 
             valid_submit = True

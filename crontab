@@ -5,6 +5,6 @@ DJANGO_SETTINGS_MODULE=uchicagolunch.settings
 10,30,50 * * * * ~/webapps/overheard/apache2/bin/start
 17,37,57 * * * * ~/webapps/uclunch/apache2/bin/start
 
-@daily /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py prunequeue
+10 * * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py prunequeue
 0 0 * * sun /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py loadweek
 15 */4 * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py match
