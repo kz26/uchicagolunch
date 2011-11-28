@@ -1,6 +1,6 @@
 from models import *
 from random import choice
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, time, timedelta
 import sys
 
 class Matcher:
