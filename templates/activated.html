@@ -4,7 +4,23 @@
 <div class="container_12">
     <div class="grid_12">
         <h1 id="content-header">Success!</h1>
-        <p>Your request has been added to the queue. We'll let you know shortly if we find a match.</p>
+        <p>Your request for a lunch date has been added to the queue.</p>
+        <h2>Preferred restaurant categories</h2>
+        <ul>
+        {% for c in client.restaurant_prefs.all %}
+        <li>{{ c.name }}</li>
+        {% endfor %}
+        </ul>
+        <h2>Availability</h2>
+        <p><i>If matched, your lunch date would take between 12-2pm on one of the following days:</i></p>
+        <ul>
+        {% for d in client.day_prefs.all %}
+        <li>{{ d }}</li>
+        {% endfor %}
+        </ul>
+        <br />
+        <p>You will receive an email with further information if a suitable match is found. Please note that we are unable to guarantee
+        a match for everyone.</p>
     </div>
 </div>
 {% endblock %}

@@ -39,7 +39,7 @@
 <header>
 <div id="header" class="container_12">
     <div class="grid_12">
-        <h1>UChicago.Lunch</h1>
+        <h1 id="header-title">UChicago.Lunch</h1>
         <h2>Meet someone new over the midday meal.</h2>
         <h3 id="inspired">Inspired by <a href="http://harvardlunch.com">HarvardLunch</a></h3>
         <div class="fb-like" data-href="http://uchicagolunch.com" data-send="true" data-width="0" data-show-faces="true"></div>
@@ -100,6 +100,14 @@
 	<script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.2/CFInstall.min.js"></script>
 	<script>window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})</script>
 <![endif]-->
+
+<script>
+$(document).ready(function() {
+    $('#header-title').click(function() {
+        window.location = '/';
+    });
+});
+</script>
 {% endblock %}
 </body>
 </html>

@@ -20,7 +20,7 @@ def home(request):
                 person.save()
             client.person = person
             dates = [d.date for d in form.cleaned_data['day_prefs']]
-            client.expires = datetime.combine(max(dates), time(11))
+            client.expires = datetime.combine(min(dates), time(8)) # expire new, unactivated on the earliest selected day, 8am
             form.save()
             send_activation_email(client) 
             valid_submit = True
@@ -33,9 +33,11 @@ def home(request):
 
 def activate(request, code):
     try:
-        c = Client.objects.get(act_code=code)
+        c = Client.objects.get(act_code=code, active=False)
         c.active = True
+        cdates = tuple(c.day_prefs.values_list('date', flat=True))
+        c.expires = datetime.combine(max(cdates), time(8)) # set the new expiration date to the lates selected day, 8am
         c.save()
-        return render(request, 'activated.html')
+        return render(request, 'activated.html', dictionary={'client': c})
     except:
-        return HttpResponse("Invalid activation key", status=400)
+        return render(request, 'activation_invalid.html')
