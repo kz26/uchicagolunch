@@ -46,16 +46,19 @@ class Matcher:
         if self.__matchobj is not None:
             return self.__matchobj
         elif self.match:
-            self.client.matched = True
-            self.match.matched = True
-            self.client.save()
-            self.match.save()
-            #sys.stdout.write("%s: matched = %s\n" % (self.client.person.name, self.client.matched))
-            #sys.stdout.write("%s: matched = %s\n" % (self.match.person.name, self.client.matched))
             m = Match(person1=self.client.person, person2=self.match.person, location=self.suggest_restaurant(), date=self.suggest_datetime()) 
             m.save()
             #sys.stdout.write("Created match object with %s and %s\n" % (self.client.person.name, self.match.person.name))
             self.__matchobj = m
+
+            self.client.matched = True
+            self.match.matched = True
+            self.client.expires = m.date # move up the expiration date to the match date
+            self.match.expires = m.date
+            self.client.save()
+            self.match.save()
+            #sys.stdout.write("%s: matched = %s\n" % (self.client.person.name, self.client.matched))
+            #sys.stdout.write("%s: matched = %s\n" % (self.match.person.name, self.client.matched))
             return m
         return None
 
