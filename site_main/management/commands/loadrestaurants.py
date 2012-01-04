@@ -10,7 +10,7 @@ class Command(BaseCommand):
         if len(args) > 0:
             f = open(args[0], 'r')
             for line in f:
-                l = smart_unicode(line).rstrip().split('\t')
+                l = line.rstrip().split('\t')
                 if len(l) >= 3:
                     cat = RestaurantCategory.objects.get_or_create(name=l[2])[0]
                     rest = Restaurant.objects.get_or_create(name=l[0], address=l[1], category=cat)
