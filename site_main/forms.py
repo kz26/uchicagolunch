@@ -8,7 +8,7 @@ class ClientForm(forms.ModelForm):
     class Meta:
         model = Client
         fields = ('name', 'email', 'restaurant_prefs', 'day_prefs')
-    name = forms.CharField(max_length=100)
+    name = forms.CharField(label="Name (first and last)", max_length=100)
     email = forms.EmailField(label="UChicago email address", validators=[uchicago_validate, banned_check]) 
     def __init__(self, *args, **kwargs):
         super(ClientForm, self).__init__(*args, **kwargs)
