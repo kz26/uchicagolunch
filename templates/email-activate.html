@@ -8,7 +8,10 @@ This email address was recently entered on <a href="http://uchicagolunch.com">UC
 <a href="http://uchicagolunch.com{% url 'site_main.views.activate' client.act_code %}">Activate my request</a>
 </p>
 
-<p>If you did not sign up, please disregard this message.</p>
+<p>The confirmation deadline is {{ client.expires|date:"DATETIME_FORMAT" }}. If you do not confirm your request by this date,
+it will be deleted automatically.</p>
+
+<p>If you did not register for this service, please disregard this message.</p>
 
 <p>
 Thanks, <br />
