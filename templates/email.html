@@ -1,6 +1,6 @@
 <html>
 <p>
-Hello {% if switch %}{{ match.person2.name }}{% else%}{{ match.person1.name }}{% endif %},
+Hello {% if switch %}{{ match.request2.name }}{% else%}{{ match.request1.name }}{% endif %},
 <br />
 You've got a lunch date, courtesy of UChicago.Lunch!
 </p>
@@ -8,16 +8,16 @@ You've got a lunch date, courtesy of UChicago.Lunch!
 <p>
 <b>
 {% if switch %}
-{{ match.person1.name }}</b> (<a href="mailto:{{ match.person1.email }}">{{ match.person1.email }}</a>)
+{{ match.request1.name }}</b> (<a href="mailto:{{ match.request1.email }}">{{ match.request1.email }}</a>)
 {% else %}
-{{ match.person2.name }}</b> (<a href="mailto:{{ match.person2.email }}">{{ match.person2.email }}</a>)
+{{ match.request2.name }}</b> (<a href="mailto:{{ match.request2.email }}">{{ match.request2.email }}</a>)
 {% endif %}
 <br />
 <b>
 {{ match.location.name }}<br />
 Category: {{ match.location.category }}<br />
 {{ match.location.address }}<br />
-{{ match.date|date:"l, F j, Y g:i A" }}<br />
+{{ match.date }}<br />
 </b>
 </p>
 

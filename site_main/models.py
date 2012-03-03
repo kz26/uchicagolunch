@@ -8,6 +8,8 @@ from acgen import *
 class RestaurantCategory(models.Model):
     class Meta:
         ordering = ['name']
+        verbose_name_plural = 'Restaurant categories'
+
     name = models.CharField(max_length=100)
     def __unicode__(self):
         return self.name
@@ -21,47 +23,43 @@ class Restaurant(models.Model):
     def __unicode__(self):
         return self.name
 
-class Day(models.Model):
+class Request(models.Model):
     class Meta:
-        ordering = ['date']
-    date = models.DateField()
-    #num = models.IntegerField(primary_key=True) # 0 = Sunday, 6 = Saturday
-    #name = models.CharField(max_length=100, unique=True)
-    def __unicode__(self):
-        return self.date.strftime("%A, %b. %d, %Y")
-        #return getDateOffset(getNextWeekNow()[0], self.num).strftime("%A, %b %d")
+        ordering = ['-created']
 
-class Person(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)
-    def __unicode__(self):
-        return self.name
-
-class Client(models.Model):
-    person = models.ForeignKey(Person)
-    restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
-    day_prefs = models.ManyToManyField(Day, verbose_name='When are you available for lunch?')
     created = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField()
     matched = models.BooleanField()
+    name = models.CharField(max_length=100, verbose_name='Name (first and last)')
+    email = models.EmailField(unique=True)
+    restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
     active = models.BooleanField()
-    act_code = models.CharField(max_length=128)
+    activation_key = models.CharField(max_length=128)
 
     def __unicode__(self):
-        return "%s <%s>" % (self.person.name, self.person.email)
+        return "%s <%s>" % (self.name, self.email)
 
     def save(self, *args, **kwargs):
         if self.pk is None:
-            self.act_code = GenRandomKey(64)
-        super(Client, self).save(*args, **kwargs)
+            self.activation_key = GenRandomKey(64)
+        super(Request, self).save(*args, **kwargs)
+
+class Day(models.Model):
+    class Meta:
+        ordering = ['-date']
+    request = models.ForeignKey(Request)
+    date = models.DateField()
+
+    def __unicode__(self):
+        return "%s - %s" % (self.request.name, self.date.strftime("%A, %b. %d, %Y"))
 
 class Match(models.Model):
-    person1 = models.ForeignKey(Person, related_name='person1')
-    person2 = models.ForeignKey(Person, related_name='person2')
+    request1 = models.ForeignKey(Request, related_name='request1')
+    request2 = models.ForeignKey(Request, related_name='request2')
     location = models.ForeignKey(Restaurant)
     date = models.DateTimeField()
     def __unicode__(self):
-        return "(%s, %s)" % (self.person1.name, self.person2.name)
+        return "(%s, %s)" % (self.request1.name, self.request2.name)
 
 class Ban(models.Model):
     email = models.EmailField()

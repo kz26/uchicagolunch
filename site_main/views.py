@@ -11,21 +11,19 @@ WEEK_FORMAT_STR = "%B %d"
 def home(request):
     valid_submit = False
     if request.method == 'POST':
-        client = Client()
-        form = ClientForm(request.POST, instance=client)
+        form = RequestForm(request.POST)
         if form.is_valid():
-            person = Person.objects.get_or_create(email=form.cleaned_data['email'])[0]
-            if person.name != form.cleaned_data['name']:
-                person.name = form.cleaned_data['name']
-                person.save()
-            client.person = person
-            dates = [d.date for d in form.cleaned_data['day_prefs']]
-            client.expires = datetime.combine(min(dates), time(8)) # expire new, unactivated on the earliest selected day, 8am
-            form.save()
-            send_activation_email(client) 
+            days = form.cleaned_data['day_prefs']
+            r = form.save(commit=False)
+            r.expires = datetime.combine(min(days), time(8)) # expire new, unactivated on the earliest selected day, 8am
+            r.save()
+            form.save_m2m()
+            for d in days:
+                Day.objects.create(request=r, date=d)
+            send_activation_email(r) 
             valid_submit = True
     else:
-        form = ClientForm()
+        form = RequestForm()
     tomorrow = date.today() + timedelta(days=1)
     endday = date.today() + timedelta(days=settings.DAYS_IN_FUTURE)
     weekstr = "%s - %s, %s" % (tomorrow.strftime(WEEK_FORMAT_STR), endday.strftime(WEEK_FORMAT_STR), date.today().year)
@@ -33,11 +31,11 @@ def home(request):
 
 def activate(request, code):
     try:
-        c = Client.objects.get(act_code=code, active=False)
-        c.active = True
-        cdates = tuple(c.day_prefs.values_list('date', flat=True))
-        c.expires = datetime.combine(max(cdates), time(8)) # set the new expiration date to the lates selected day, 8am
-        c.save()
-        return render(request, 'activated.html', dictionary={'client': c})
+        r = Request.objects.get(activation_key=code, active=False)
+        r.active = True
+        rdates = tuple(r.day_set.values_list('date', flat=True))
+        r.expires = datetime.combine(max(rdates), time(8)) # set the new expiration date to the lates selected day, 8am
+        r.save()
+        return render(request, 'activated.html', dictionary={'req': r})
     except:
         return render(request, 'activation_invalid.html')

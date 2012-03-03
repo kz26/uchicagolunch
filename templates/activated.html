@@ -7,15 +7,15 @@
         <p>Your request for a lunch date has been added to the queue.</p>
         <h2>Preferred restaurant categories</h2>
         <ul>
-        {% for c in client.restaurant_prefs.all %}
-        <li>{{ c.name }}</li>
+        {% for r in req.restaurant_prefs.all %}
+        <li>{{ r.name }}</li>
         {% endfor %}
         </ul>
         <h2>Availability</h2>
-        <p><i>If matched, your lunch date would take between 12-2pm on one of the following days:</i></p>
+        <p><i>If matched, your lunch date will be scheduled between 12-2pm on one of the following days:</i></p>
         <ul>
-        {% for d in client.day_prefs.all %}
-        <li>{{ d }}</li>
+        {% for d in req.day_set.all %}
+        <li>{{ d.date }}</li>
         {% endfor %}
         </ul>
         <br />

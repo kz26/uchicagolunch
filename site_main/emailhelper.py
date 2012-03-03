@@ -3,10 +3,10 @@ from django.conf import settings
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 
-def send_activation_email(cl):
+def send_activation_email(r):
     subject = r"[UChicago.Lunch] Activate your request"
-    msg = render_to_string('email-activate.html', {'client': cl}) 
-    e = EmailMessage(subject, msg, settings.DEFAULT_FROM_EMAIL, [cl.person.email])
+    msg = render_to_string('email-activate.html', {'req': r}) 
+    e = EmailMessage(subject, msg, settings.DEFAULT_FROM_EMAIL, [r.email])
     e.content_subtype = 'html'
     e.send()
 
