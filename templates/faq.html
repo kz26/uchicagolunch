@@ -7,7 +7,7 @@
         <ul>
             <li><p class="bold">Where did the idea come from?</p>
                 <p>UChicago.Lunch is inspired by <a href="http://harvardlunch.com">HarvardLunch</a>. After seeking wisdom from its creator,
-                we decided to take the best of that site and combine it with some of our own special sauce: automated scheduling, restaurant suggestions,
+                we decided to take the best of that site and combine it with some of our own special sauce: intelligent scheduling and matching, restaurant suggestions,
                 and more.</p>
             </li>
             <li><p class="bold">Is UChicago.Lunch a dating site?</p>
@@ -21,6 +21,10 @@
             <li><p class="bold">What restaurants have you included?</p>
                 <p>Our restaurant list was compiled using a combination of the Chicago Life dining guide, Yelp, and personal knowledge.</p>
             </li>
+            <li><p class="bold">How does your matching algorithm work?</p>
+                <p>We use a version of Edmonds' blossom-contraction algorithm for maximum-cardinality matching.
+                See <a href="http://en.wikipedia.org/wiki/Edmonds's_matching_algorithm">this Wikipedia article</a> for the gory details.
+                </p>
             <li><p class="bold">Is the restaurant and meeting time that I was given set in stone?</p>
                 <p>Not at all! We encourage people to contact their lunch dates if another time or place would be preferable.</p>
             </li>
@@ -29,14 +33,13 @@
                    individual conflicts.</p>
             </li>
             <li><p class="bold">When do I know if I get matched / How much advance notice do I get?</p>
-                <p>Due to the randomized nature of our matching algorithm, we are not able to provide specific timeframes. However,
+                <p>Due to the automated nature of the matching system, we are not able to provide specific timeframes. However,
                    if we are able to match you, you will usually receive an email several hours prior to the start of the lunch date, at the latest.
                    Please note that we will not send an email if you are not able to be matched.</p>
             </li>
             <li><p class="bold">When does my request expire?</p>
-            <p>You must activate your request by 8am on the earliest selected day using the activation link emailed to you. Once
-               your request becomes active, the expiration date will be moved to 8am of the latest day you selected. If we match you for a lunch date,
-               we'll automatically expire your request afterwards so that you can request another one!</p> 
+            <p>You must confirm your request by 8am on the earliest selected day using the activation link emailed to you. After you confirm
+            your request, the expiration date will be moved to 8am of the latest day you selected.</p> 
             </li>
 
         </ul>

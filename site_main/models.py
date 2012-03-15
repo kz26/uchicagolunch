@@ -31,10 +31,10 @@ class Request(models.Model):
     expires = models.DateTimeField()
     matched = models.BooleanField()
     name = models.CharField(max_length=100, verbose_name='Name (first and last)')
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     restaurant_prefs = models.ManyToManyField(RestaurantCategory, verbose_name='What kind of food do you like?')
     active = models.BooleanField()
-    activation_key = models.CharField(max_length=128)
+    activation_key = models.CharField(max_length=128, editable=False)
 
     def __unicode__(self):
         return "%s <%s>" % (self.name, self.email)
@@ -54,6 +54,9 @@ class Day(models.Model):
         return "%s - %s" % (self.request.name, self.date.strftime("%A, %b. %d, %Y"))
 
 class Match(models.Model):
+    class Meta:
+        verbose_name_plural = 'Matches'
+
     request1 = models.ForeignKey(Request, related_name='request1')
     request2 = models.ForeignKey(Request, related_name='request2')
     location = models.ForeignKey(Restaurant)

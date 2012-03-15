@@ -4,7 +4,7 @@ from django.shortcuts import *
 from forms import *
 from datetime import date, timedelta, time
 from django.conf import settings
-from emailhelper import *
+from emails import *
 
 WEEK_FORMAT_STR = "%B %d"
 

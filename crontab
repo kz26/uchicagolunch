@@ -1,10 +1,3 @@
 MAILTO=whitehat2k9@gmail.com
-PYTHONPATH=/home/connext/libs/python2.7:/home/connext/webapps/uclunch/lib/python2.7
 DJANGO_SETTINGS_MODULE=uchicagolunch.settings
-8,28,48 * * * * ~/webapps/django/apache2/bin/start
-10,30,50 * * * * ~/webapps/overheard/apache2/bin/start
-17,37,57 * * * * ~/webapps/uclunch/apache2/bin/start
-
-0 8 * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py prunequeue
-0 0 * * sun /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py loadweek
-15 */4 * * * /usr/local/bin/python2.7 /home/connext/webapps/uclunch/uchicagolunch/manage.py match
+15 */4 * * * /home/admin/html/uchicagolunch/manage.py match

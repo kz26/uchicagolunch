@@ -8,10 +8,12 @@ This email address was recently entered on <a href="http://uchicagolunch.com">UC
 <a href="http://uchicagolunch.com{% url 'site_main.views.activate' req.activation_key %}">Activate my request</a>
 </p>
 
-<p>The confirmation deadline is {{ req.expires|date:"DATETIME_FORMAT" }}. If you do not confirm your request by this date,
+<p>The confirmation deadline is {{ req.expires|date:"DATETIME_FORMAT" }}. If you do not confirm your UChicago.Lunch request by the deadline,
 it will be deleted automatically.</p>
 
 <p>If you did not register for this service, please disregard this message.</p>
+
+<p>Request #{{ req.pk }}</p>
 
 <p>
 Thanks, <br />

@@ -1,0 +1,32 @@
+<html>
+<p>
+Hello {{ to.name }},
+<br />
+You've got a lunch date, courtesy of UChicago.Lunch!
+</p>
+
+<p>
+<b>{{ from.name }}</b> &#060;<a href="mailto:{{ from.email }}">{{ from.email }}</a>&#062;</b>
+</p>
+
+<p>
+<b>
+{{ match.location.name }}<br />
+Category: {{ match.location.category }}<br />
+{{ match.location.address }}<br />
+{{ match.date }}<br />
+</b>
+</p>
+
+<p>Please note that the venue, date, and time are only suggestions. We highly recommend that you contact {{ to.name }}
+to confirm, or arrange to meet at an alternate location or time.</p>
+
+<p>Have fun and enjoy your meal!</p>
+
+<p>Match #{{ match.pk }}</p>
+
+<p>
+Thanks, <br />
+the UChicago.Lunch crew
+</p>
+</html>

@@ -8,7 +8,7 @@
     <h3 id="schedule-week">Now scheduling for<br />
     {{ weekstr }}</h3>
     {% if valid_submit %}
-    <p id="submit-success">An email has been dispatched to the address you provided. Please follow the directions in the email to activate your request.</p>
+    <p id="submit-success">An email has been dispatched to the address you provided. Please follow the directions in the email to confirm your request.</p>
     {% else %}
     <form method="post">
     {% csrf_token %}
@@ -18,7 +18,7 @@
     {% if field.errors %}{% for e in field.errors %}<li class="formerror">{{ e }}</li>{% endfor %}{% endif %}
     <li>{{ field }}</li>
     {% endfor %}
-    <li><input id="client-form-submit" type="submit" value="Add me to the queue!" /></li>
+    <li><input id="client-form-submit" type="submit" value="Submit request" /></li>
     <li><i>Your lunch date will be scheduled somewhere between 12-2 pm on one of the days you choose.</i></li>
     </ul>
     </form>

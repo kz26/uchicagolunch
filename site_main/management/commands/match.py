@@ -1,26 +1,15 @@
 from django.core.management.base import BaseCommand, CommandError
 from django.conf import settings
-from site_main.matcher import *
-from random import shuffle
-from site_main.emailhelper import *
-from datetime import datetime
+from site_main.matcher import matcher
 
 class Command(BaseCommand):
-    help = "Find matches and notify users via email"
+    help = "Find matches and notify users via email (run this via cron)"
 
     def handle(self, *args, **options):
-        clients = Client.objects.filter(active=True, matched=False, expires__gt=datetime.now()).values_list('id', flat=True)
-        shuffle(list(clients))
-        for clid in clients:
-            c = Client.objects.get(pk=clid) # force a refresh of the client object, otherwise caching does funny things
-            if not c.matched:
-                #self.stdout.write("%s is not matched\n" % (c.person.name))
-                m = Matcher(c)
-                if m:
-                    mo = m.get_match()
-                    notify_match(mo)
-                    #self.stdout.write("Got match object with %s and %s\n" % (mo.person1.name, mo.person2.name))
-            #else:
-                #self.stdout.write("%s is already matched, skipping\n" % (c.person.name))
+        matches = matcher.run()
+        if matches:
+            self.stdout.write("Matched:\n")
+            for m in matches:
+                self.stdout.write("\t%s, %s\n" % (m.request1.name, m.request2.name))
 
 
