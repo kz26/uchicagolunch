@@ -29,6 +29,7 @@ class Request(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
     expires = models.DateTimeField()
+    expire_notified = models.BooleanField()
     matched = models.BooleanField()
     name = models.CharField(max_length=100, verbose_name='Name (first and last)')
     email = models.EmailField()
