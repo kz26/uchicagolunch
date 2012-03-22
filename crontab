@@ -1,3 +1,4 @@
 MAILTO=whitehat2k9@gmail.com
 DJANGO_SETTINGS_MODULE=uchicagolunch.settings
 15 */4 * * * /home/admin/html/uchicagolunch/manage.py match
+5 8 * * * /home/admin/html/uchicagolunch/manage.py expirereqs
