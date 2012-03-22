@@ -18,3 +18,10 @@ def notify_match(mo): # takes a match object
         e = EmailMessage(subject, msg, settings.DEFAULT_FROM_EMAIL, [p[1].email]) 
         e.content_subtype = 'html'
         e.send()
+
+def notify_expired(req): # takes a Request object
+    subject = r"[UChicago.Lunch] Your request"
+    msg = render_to_string('email-expired.html', {'req': req})
+    e = EmailMessage(subject, msg, settings.DEFAULT_FROM_EMAIL, [req.email])
+    e.content_subtype = 'html'
+    e.send()

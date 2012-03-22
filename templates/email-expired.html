@@ -1,0 +1,33 @@
+{% load url from future %}
+<html>
+<p>Dear {{ req.name }},</p>
+
+<p>UChicago.Lunch was unable to fulfill your request for a lunch date.</p>
+
+<p>Requested dates:</p>
+<ul>
+{% for d in req.day_set.all %}
+<li>{{ d.date }}</li>
+{% endfor %}
+</ul>
+
+<p>Restaurant preferences:</p>
+<ul>
+{% for r in req.restaurant_prefs.all %}
+<li>{{ r.name }}</li>
+{% endfor %}
+</ul>
+
+<p>We encourage you to register again. To maximize your chances of getting matched next time, select more dates and restaurant categories.
+<br />
+Hope to see you again soon!
+</p>
+
+<p>Request #{{ req.pk }}</p>
+
+<p>
+Thanks, <br />
+the UChicago.Lunch crew
+</p>
+</html>
+
